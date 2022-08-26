@@ -1,0 +1,66 @@
+﻿@model Proyecto1ConLogin.Models.Alquiler_de_espacio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Alquiler_de_espacio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_del_evento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_del_evento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad_de_asistentes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad_de_asistentes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_del_evento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_del_evento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora_del_evento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora_del_evento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Encargado_del_evento.Nombre_encargado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Encargado_del_evento.Nombre_encargado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Show_a_presentar.Nombre_show)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Show_a_presentar.Nombre_show)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Alquiler_evento }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

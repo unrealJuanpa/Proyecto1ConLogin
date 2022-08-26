@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Proyecto1ConLogin.Models.Show_a_presentar>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_show)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo_por_hora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo_de_show_a_presentar.Nombre_tipo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_show)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Costo_por_hora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo_de_show_a_presentar.Nombre_tipo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Show }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Show }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Show })
+        </td>
+    </tr>
+}
+
+</table>

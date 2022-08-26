@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Proyecto1ConLogin.Models.Tipo_de_show_a_presentar>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Empresa All Stars</h1>
+    <p class="lead">Control de Alquileres</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        @Html.ActionLink("Tipo de show a presentar", "Index", "Tipo_de_show_a_presentar")
+        <img src="https://www.showlive.mx/images/logo_showlive_lg.png" width="550px" />
+    </div>
+
+    <div class="col-md-6">
+        @Html.ActionLink("Encargados de eventos", "Index", "Encargado_del_evento")
+        <img src="https://img.genial.ly/5e35a10e154b0c0f95944bd3/b2a2e84f-8213-4d91-a41f-0d9476a203aa.png" width="550px" />
+    </div>
+
+    <div class="col-md-6">
+        @Html.ActionLink("Shows", "Index", "Show_a_presentar")
+        <img src="https://thehouserecords.com/wp-content/uploads/2022/01/Elementos-de-la-musica.png" width="550px" />
+    </div>
+
+    <div class="col-md-6">
+        @Html.ActionLink("Alquiler de espacio", "Index", "Alquiler_de_espacio")
+        <img src="https://images.vexels.com/media/users/3/274206/isolated/preview/7557be176f7049d81e04a4fb94dbee63-campo-de-paisaje-natural-con-el-sol-plano.png" width="550px" />
+    </div>
+</div>

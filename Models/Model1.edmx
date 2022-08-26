@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDEventosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alquiler_de_espacio">
+          <Key>
+            <PropertyRef Name="Alquiler_evento" />
+          </Key>
+          <Property Name="Alquiler_evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_del_evento" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Cantidad_de_asistentes" Type="int" Nullable="false" />
+          <Property Name="Fecha_del_evento" Type="date" Nullable="false" />
+          <Property Name="Hora_del_evento" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Encargado" Type="int" />
+          <Property Name="Show" Type="int" />
+        </EntityType>
+        <EntityType Name="Encargado_del_evento">
+          <Key>
+            <PropertyRef Name="Encargado" />
+          </Key>
+          <Property Name="Encargado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_encargado" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Telefono_contacto" Type="int" Nullable="false" />
+          <Property Name="Correo_electronico" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Show_a_presentar">
+          <Key>
+            <PropertyRef Name="Show" />
+          </Key>
+          <Property Name="Show" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_show" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="512" />
+          <Property Name="Costo_por_hora" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Tipo_show" Type="int" />
+        </EntityType>
+        <EntityType Name="Tipo_de_show_a_presentar">
+          <Key>
+            <PropertyRef Name="Tipo_show" />
+          </Key>
+          <Property Name="Tipo_show" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_tipo" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Descripcion_tipo" Type="varchar" MaxLength="512" />
+        </EntityType>
+        <Association Name="Relationship15">
+          <End Role="Encargado_del_evento" Type="Self.Encargado_del_evento" Multiplicity="0..1" />
+          <End Role="Alquiler_de_espacio" Type="Self.Alquiler_de_espacio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encargado_del_evento">
+              <PropertyRef Name="Encargado" />
+            </Principal>
+            <Dependent Role="Alquiler_de_espacio">
+              <PropertyRef Name="Encargado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship19">
+          <End Role="Show_a_presentar" Type="Self.Show_a_presentar" Multiplicity="0..1" />
+          <End Role="Alquiler_de_espacio" Type="Self.Alquiler_de_espacio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Show_a_presentar">
+              <PropertyRef Name="Show" />
+            </Principal>
+            <Dependent Role="Alquiler_de_espacio">
+              <PropertyRef Name="Show" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship20">
+          <End Role="Tipo_de_show_a_presentar" Type="Self.Tipo_de_show_a_presentar" Multiplicity="0..1" />
+          <End Role="Show_a_presentar" Type="Self.Show_a_presentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_de_show_a_presentar">
+              <PropertyRef Name="Tipo_show" />
+            </Principal>
+            <Dependent Role="Show_a_presentar">
+              <PropertyRef Name="Tipo_show" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDEventosModelStoreContainer">
+          <EntitySet Name="Alquiler_de_espacio" EntityType="Self.Alquiler_de_espacio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Encargado_del_evento" EntityType="Self.Encargado_del_evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Show_a_presentar" EntityType="Self.Show_a_presentar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_de_show_a_presentar" EntityType="Self.Tipo_de_show_a_presentar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Relationship15" Association="Self.Relationship15">
+            <End Role="Encargado_del_evento" EntitySet="Encargado_del_evento" />
+            <End Role="Alquiler_de_espacio" EntitySet="Alquiler_de_espacio" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship19" Association="Self.Relationship19">
+            <End Role="Show_a_presentar" EntitySet="Show_a_presentar" />
+            <End Role="Alquiler_de_espacio" EntitySet="Alquiler_de_espacio" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship20" Association="Self.Relationship20">
+            <End Role="Tipo_de_show_a_presentar" EntitySet="Tipo_de_show_a_presentar" />
+            <End Role="Show_a_presentar" EntitySet="Show_a_presentar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDEventosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alquiler_de_espacio">
+          <Key>
+            <PropertyRef Name="Alquiler_evento" />
+          </Key>
+          <Property Name="Alquiler_evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_del_evento" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cantidad_de_asistentes" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_del_evento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Hora_del_evento" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Encargado" Type="Int32" />
+          <Property Name="Show" Type="Int32" />
+          <NavigationProperty Name="Encargado_del_evento" Relationship="Self.Relationship15" FromRole="Alquiler_de_espacio" ToRole="Encargado_del_evento" />
+          <NavigationProperty Name="Show_a_presentar" Relationship="Self.Relationship19" FromRole="Alquiler_de_espacio" ToRole="Show_a_presentar" />
+        </EntityType>
+        <EntityType Name="Encargado_del_evento">
+          <Key>
+            <PropertyRef Name="Encargado" />
+          </Key>
+          <Property Name="Encargado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_encargado" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono_contacto" Type="Int32" Nullable="false" />
+          <Property Name="Correo_electronico" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Alquiler_de_espacio" Relationship="Self.Relationship15" FromRole="Encargado_del_evento" ToRole="Alquiler_de_espacio" />
+        </EntityType>
+        <EntityType Name="Show_a_presentar">
+          <Key>
+            <PropertyRef Name="Show" />
+          </Key>
+          <Property Name="Show" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_show" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Costo_por_hora" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Tipo_show" Type="Int32" />
+          <NavigationProperty Name="Alquiler_de_espacio" Relationship="Self.Relationship19" FromRole="Show_a_presentar" ToRole="Alquiler_de_espacio" />
+          <NavigationProperty Name="Tipo_de_show_a_presentar" Relationship="Self.Relationship20" FromRole="Show_a_presentar" ToRole="Tipo_de_show_a_presentar" />
+        </EntityType>
+        <EntityType Name="Tipo_de_show_a_presentar">
+          <Key>
+            <PropertyRef Name="Tipo_show" />
+          </Key>
+          <Property Name="Tipo_show" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_tipo" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion_tipo" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Show_a_presentar" Relationship="Self.Relationship20" FromRole="Tipo_de_show_a_presentar" ToRole="Show_a_presentar" />
+        </EntityType>
+        <Association Name="Relationship15">
+          <End Role="Encargado_del_evento" Type="Self.Encargado_del_evento" Multiplicity="0..1" />
+          <End Role="Alquiler_de_espacio" Type="Self.Alquiler_de_espacio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encargado_del_evento">
+              <PropertyRef Name="Encargado" />
+            </Principal>
+            <Dependent Role="Alquiler_de_espacio">
+              <PropertyRef Name="Encargado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship19">
+          <End Role="Show_a_presentar" Type="Self.Show_a_presentar" Multiplicity="0..1" />
+          <End Role="Alquiler_de_espacio" Type="Self.Alquiler_de_espacio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Show_a_presentar">
+              <PropertyRef Name="Show" />
+            </Principal>
+            <Dependent Role="Alquiler_de_espacio">
+              <PropertyRef Name="Show" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship20">
+          <End Role="Tipo_de_show_a_presentar" Type="Self.Tipo_de_show_a_presentar" Multiplicity="0..1" />
+          <End Role="Show_a_presentar" Type="Self.Show_a_presentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_de_show_a_presentar">
+              <PropertyRef Name="Tipo_show" />
+            </Principal>
+            <Dependent Role="Show_a_presentar">
+              <PropertyRef Name="Tipo_show" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDEventosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alquiler_de_espacio" EntityType="Self.Alquiler_de_espacio" />
+          <EntitySet Name="Encargado_del_evento" EntityType="Self.Encargado_del_evento" />
+          <EntitySet Name="Show_a_presentar" EntityType="Self.Show_a_presentar" />
+          <EntitySet Name="Tipo_de_show_a_presentar" EntityType="Self.Tipo_de_show_a_presentar" />
+          <AssociationSet Name="Relationship15" Association="Self.Relationship15">
+            <End Role="Encargado_del_evento" EntitySet="Encargado_del_evento" />
+            <End Role="Alquiler_de_espacio" EntitySet="Alquiler_de_espacio" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship19" Association="Self.Relationship19">
+            <End Role="Show_a_presentar" EntitySet="Show_a_presentar" />
+            <End Role="Alquiler_de_espacio" EntitySet="Alquiler_de_espacio" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship20" Association="Self.Relationship20">
+            <End Role="Tipo_de_show_a_presentar" EntitySet="Tipo_de_show_a_presentar" />
+            <End Role="Show_a_presentar" EntitySet="Show_a_presentar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDEventosModelStoreContainer" CdmEntityContainer="BDEventosEntities">
+          <EntitySetMapping Name="Alquiler_de_espacio">
+            <EntityTypeMapping TypeName="BDEventosModel.Alquiler_de_espacio">
+              <MappingFragment StoreEntitySet="Alquiler_de_espacio">
+                <ScalarProperty Name="Alquiler_evento" ColumnName="Alquiler_evento" />
+                <ScalarProperty Name="Nombre_del_evento" ColumnName="Nombre_del_evento" />
+                <ScalarProperty Name="Cantidad_de_asistentes" ColumnName="Cantidad_de_asistentes" />
+                <ScalarProperty Name="Fecha_del_evento" ColumnName="Fecha_del_evento" />
+                <ScalarProperty Name="Hora_del_evento" ColumnName="Hora_del_evento" />
+                <ScalarProperty Name="Encargado" ColumnName="Encargado" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Encargado_del_evento">
+            <EntityTypeMapping TypeName="BDEventosModel.Encargado_del_evento">
+              <MappingFragment StoreEntitySet="Encargado_del_evento">
+                <ScalarProperty Name="Encargado" ColumnName="Encargado" />
+                <ScalarProperty Name="Nombre_encargado" ColumnName="Nombre_encargado" />
+                <ScalarProperty Name="Telefono_contacto" ColumnName="Telefono_contacto" />
+                <ScalarProperty Name="Correo_electronico" ColumnName="Correo_electronico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Show_a_presentar">
+            <EntityTypeMapping TypeName="BDEventosModel.Show_a_presentar">
+              <MappingFragment StoreEntitySet="Show_a_presentar">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="Nombre_show" ColumnName="Nombre_show" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Costo_por_hora" ColumnName="Costo_por_hora" />
+                <ScalarProperty Name="Tipo_show" ColumnName="Tipo_show" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_de_show_a_presentar">
+            <EntityTypeMapping TypeName="BDEventosModel.Tipo_de_show_a_presentar">
+              <MappingFragment StoreEntitySet="Tipo_de_show_a_presentar">
+                <ScalarProperty Name="Tipo_show" ColumnName="Tipo_show" />
+                <ScalarProperty Name="Nombre_tipo" ColumnName="Nombre_tipo" />
+                <ScalarProperty Name="Descripcion_tipo" ColumnName="Descripcion_tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

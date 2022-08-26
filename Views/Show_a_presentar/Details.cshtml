@@ -1,0 +1,50 @@
+﻿@model Proyecto1ConLogin.Models.Show_a_presentar
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Show_a_presentar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_show)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_show)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo_por_hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costo_por_hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_de_show_a_presentar.Nombre_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_de_show_a_presentar.Nombre_tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Show }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

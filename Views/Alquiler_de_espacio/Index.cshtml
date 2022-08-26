@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Proyecto1ConLogin.Models.Alquiler_de_espacio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_del_evento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad_de_asistentes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_del_evento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora_del_evento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Encargado_del_evento.Nombre_encargado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Show_a_presentar.Nombre_show)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_del_evento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad_de_asistentes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_del_evento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora_del_evento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Encargado_del_evento.Nombre_encargado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Show_a_presentar.Nombre_show)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Alquiler_evento }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Alquiler_evento }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Alquiler_evento })
+        </td>
+    </tr>
+}
+
+</table>
